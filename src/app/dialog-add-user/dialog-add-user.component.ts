@@ -9,7 +9,8 @@ import {User} from '../../models/user.class';
 import {FormsModule} from '@angular/forms';
 import {Firestore, collection, addDoc} from '@angular/fire/firestore';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -19,12 +20,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dialog-add-user.component.scss'
 })
 export class DialogAddUserComponent {
-
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {[]}
   user = new User();
   birthDate: Date = new Date();
   firestore = inject(Firestore);
   loading = false;
 
+  
 
   async saveUser() {
     this.user.birthDate = this.birthDate.getTime();
@@ -34,6 +36,7 @@ export class DialogAddUserComponent {
     // await addDoc(usersCollection, this.user);
     await addDoc(usersCollection, this.user.toJSON());
     this.loading = false;
+    this.dialogRef.close();
 
 
     console.log('User successfully added to Firestore!');
