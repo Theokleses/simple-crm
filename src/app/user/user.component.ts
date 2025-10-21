@@ -7,6 +7,7 @@ import {DialogAddUserComponent} from '../dialog-add-user/dialog-add-user.compone
 import {MatNativeDateModule} from '@angular/material/core';
 import {User} from '../../models/user.class';
 import {MatCardModule} from '@angular/material/card';
+
 @Component({
   selector: 'app-user',
   standalone: true,

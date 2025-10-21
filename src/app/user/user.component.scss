@@ -1,19 +1,63 @@
 // .mat-mdc-fab .mat-mdc-button-persistent-ripple{
 //     pointer-events: all;
 // }
-.add-user-btn{
-    position: absolute;
-    right: 56px;
-    bottom: 56px;
+
+mat-card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.user-table{
-    width: 100%;
-    padding: 20px;
-    th {
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 14px;
-        font-weight: 500;
-        text-align: start; 
+.add-user-btn {
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+}
+
+.user-table {
+  width: 100%;
+  padding: 20px;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    &:first-child {
+        cursor: unset;
+        &:hover{
+            background-color: unset;
+        }
     }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    cursor: pointer;
+
+    td {
+      height: 48px;
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+
+    th {
+      height: 48px;
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  th {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: start;
+  }
 }
