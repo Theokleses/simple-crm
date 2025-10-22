@@ -1,15 +1,20 @@
+@for (user of users$ | async; track user.id) {
 <mat-card>
   <table class="user-table">
     <tr>
       <th>Name</th>
       <th>E-Mail</th>
+      <th>Address</th>
+      <th>Postal Code</th>
       <th>City</th>
     </tr>
 
     <tr>
-      <td>asdasd</td>
-      <td>asdasd</td>
-      <td>asdasd</td>
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td></td>
+      <td>{{ user.street }}</td>
+      <td>{{ user.zipCode }}</td>
+      <td>{{ user.city }}</td>
     </tr>
 
     <tr>
@@ -19,6 +24,7 @@
     </tr>
   </table>
 </mat-card>
+}
 
 <button
   (click)="openDialog()"
