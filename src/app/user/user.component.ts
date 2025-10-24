@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,8 @@ import { AsyncPipe } from '@angular/common';
     MatNativeDateModule,
     MatCardModule,
     AsyncPipe,
-  ],
+    RouterLink
+],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
@@ -34,6 +36,10 @@ export class UserComponent {
   constructor() {
     const usersCollection = collection(this.firestore, 'users');
     this.users$ = collectionData(usersCollection, {idField: 'id',}) as Observable<User[]>;
+
+    this.users$.subscribe(users => {
+      console.log('Received changes from DB:', users);
+  });
   }
 
   openDialog() {
