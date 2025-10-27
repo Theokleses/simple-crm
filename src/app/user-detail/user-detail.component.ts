@@ -4,9 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Firestore, doc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.class';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -18,6 +21,7 @@ import {MatMenuModule} from '@angular/material/menu';
 export class UserDetailComponent {
   route = inject(ActivatedRoute);
   firestore = inject(Firestore);
+  private dialog = inject(MatDialog);
 
   user$?: Observable<User>;
   userId: string | null;
@@ -37,10 +41,10 @@ export class UserDetailComponent {
   }
 
   editUserDetail(){
-
+    this.dialog.open(DialogEditUserComponent);
   }
 
   editMenu(){
-    
+    this.dialog.open(DialogEditAddressComponent);
   }
 }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { User } from '../../models/user.class';
@@ -19,7 +19,6 @@ import { RouterLink } from "@angular/router";
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    MatDialogModule,
     MatNativeDateModule,
     MatCardModule,
     AsyncPipe,
