@@ -27,3 +27,13 @@
         margin-bottom: 0;
     }
 }
+
+.pin-right-upper-corner{
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
