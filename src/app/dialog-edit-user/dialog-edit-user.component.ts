@@ -8,14 +8,28 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatNativeDateModule, MAT_DATE_LOCALE, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MatDateFormats} from '@angular/material/core';
 import { Firestore, updateDoc, doc } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
+
+export const MY_DATE_FORMATS: MatDateFormats = {
+  parse: { dateInput: 'DD.MM.YYYY' },
+  display: {
+    dateInput: 'DD.MM.YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  }
+};
 
 @Component({
   selector: 'app-dialog-edit-user',
   standalone: true,
   imports: [MatDialogModule, MatFormFieldModule, MatProgressBarModule, FormsModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, CommonModule],
+  providers: [
+      { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+      { provide: DateAdapter, useClass: NativeDateAdapter },
+      { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS } ],
   templateUrl: './dialog-edit-user.component.html',
   styleUrl: './dialog-edit-user.component.scss'
 })
