@@ -8,18 +8,27 @@
       <th>City</th>
     </tr>
 
-  @for (user of users$ | async; track user.id) {
+    @for (user of users$ | async; track user.id) {
     <tr [routerLink]="['/user/' + user.id]">
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.street }}</td>
       <td>{{ user.zipCode }}</td>
       <td>{{ user.city }}</td>
-    </tr>
-  }
+    <td class="text-right">
+      <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="adressMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #adressMenu="matMenu">
+        <button mat-menu-item (click)="deleteUser(user.id!, user)">
+          Delete
+        </button>
+      </mat-menu>
+    </td>
+  </tr>
+}
   </table>
 </mat-card>
-
 
 <button
   (click)="openDialog()"

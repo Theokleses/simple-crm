@@ -7,10 +7,11 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { MatNativeDateModule } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,8 @@ import { RouterLink } from "@angular/router";
     MatNativeDateModule,
     MatCardModule,
     AsyncPipe,
-    RouterLink
+    RouterLink,
+    MatMenuModule
 ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
@@ -31,6 +33,7 @@ export class UserComponent {
   users$: Observable<User[]>;
   private dialog = inject(MatDialog);
   firestore = inject(Firestore);
+  loading = false;
 
   constructor() {
     const usersCollection = collection(this.firestore, 'users');
@@ -43,5 +46,21 @@ export class UserComponent {
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
+  }
+
+  async deleteUser(userId: string, user: User) {
+    const confirmDelete = confirm(`Möchtest du den Benutzer "${user.firstName} ${user.lastName}" wirklich löschen?`);
+    if (!confirmDelete) return;
+
+    try {
+      this.loading = true;
+      const userDocRef = doc(this.firestore, `users/${userId}`);
+      await deleteDoc(userDocRef);
+      console.log('User erfolgreich gelöscht');
+    } catch (error) {
+      console.error('Fehler beim Löschen des Benutzers:', error);
+    } finally {
+      this.loading = false;
+    }
   }
 }

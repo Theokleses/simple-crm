@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Firestore, doc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.class';
@@ -14,7 +14,7 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatCardModule, MatIconModule, MatButtonModule, MatMenuModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatMenuModule, RouterLink],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss',
 })
